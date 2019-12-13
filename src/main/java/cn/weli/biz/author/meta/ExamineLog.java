@@ -23,7 +23,7 @@ public class ExamineLog {
     private long examineId;
 
     @ApiModelProperty("作者ID")
-    private String authorId;
+    private long authorId;
 
     @ApiModelProperty("作者名称")
     private String authorName;

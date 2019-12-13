@@ -72,7 +72,7 @@ public class ExamineLogDao extends AbstractNoCacheDao<ExamineLog> {
      * @param authorId  作者id
      * @return          id查询到的审批日志记录
      */
-    public ExamineLog getByAuthorId(String authorId) {
+    public ExamineLog getByAuthorId(long authorId) {
         return domainDaoSupport.getByWhere(" author_id = ? limit 1;", new Object[]{authorId});
     }
 }

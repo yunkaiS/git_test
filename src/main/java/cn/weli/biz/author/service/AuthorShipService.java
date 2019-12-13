@@ -2,6 +2,8 @@ package cn.weli.biz.author.service;
 
 import cn.weli.biz.author.dao.AuthorShipDao;
 import cn.weli.biz.author.dto.AuthorCreateForm;
+import cn.weli.biz.author.dto.AuthorQueryForm;
+import cn.weli.biz.author.dto.AuthorQueryRespDTO;
 import cn.weli.biz.author.dto.AuthorShipStatus;
 import cn.weli.biz.author.meta.AuthorShip;
 import cn.weli.biz.merchants.utils.AuthenticateUtils;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 import suishen.libs.web.exception.BusinessException;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author yunk.shen
@@ -86,7 +89,7 @@ public class AuthorShipService {
      * @param authorId 作者Id
      * @param status  作者状态
      */
-    public boolean updateStatus(String authorId, Integer status) {
+    public boolean updateStatus(long authorId, Integer status) {
         AuthorShip localAuthor = authorShipDao.getAuthorByAuthorId(authorId);
         if (localAuthor == null) {
             throw new BusinessException("无效的作者id, id=" + authorId);
@@ -100,7 +103,7 @@ public class AuthorShipService {
      * @param authorId
      * @return
      */
-    public AuthorShip getByAuthorId(String authorId) {
+    public AuthorShip getByAuthorId(long authorId) {
         return authorShipDao.getAuthorByAuthorId(authorId);
     }
 
@@ -113,11 +116,15 @@ public class AuthorShipService {
         return authorShipDao.getAuthorByAuthorEmail(email);
     }
 
-//    /**
-//     * 后台查询
-//     */
-//    public AuthorQueryRespDTO<AuthorShip> adminQuery(AuthorQueryForm form) {
-//        return authorShipDao.getAuthorListByPage(form);
-//    }
+    /**
+     * 后台查询
+     */
+    public AuthorQueryRespDTO<AuthorShip> adminQuery(AuthorQueryForm form) {
+        return authorShipDao.getAuthorListByPage(form);
+    }
+
+    public List<AuthorShip> getAllList(){
+        return authorShipDao.getAllList();
+    }
 
 }

@@ -24,7 +24,7 @@ public class  AuthorCreateForm {
     @ApiModelProperty("作者Id")
 //    @NotBlank(message = "作者Id不可为空")
 //    @Pattern(regexp = ValidationUtils.POSITIVE_NUMBER, message = "作者Id有误")
-    private String authorId;
+    private long authorId;
 
     @ApiModelProperty("作者名")
     @Length(max = 64, message = "作者名超过长度限制，请重新输入")

@@ -23,7 +23,7 @@ public class AuthorShip {
     private long id;
 
     @ApiModelProperty("作者id")
-    private String authorId;
+    private long authorId;
 
     @ApiModelProperty("用户名")
     private String authorName;

@@ -1,10 +1,14 @@
 package cn.weli.biz.author.dao;
 
+import cn.weli.biz.author.dto.AuthorQueryForm;
+import cn.weli.biz.author.dto.AuthorQueryRespDTO;
 import cn.weli.biz.author.meta.AuthorShip;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import suishen.framework.dao.DomainDaoSupport;
+import org.apache.commons.lang3.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,10 +56,10 @@ public class AuthorShipDao {
     }
 
     public List<AuthorShip> getAllList() {
-        return domainDaoSupport.getListByWhere(" 1=1 order by id desc", new Object[]{});
+        return domainDaoSupport.getListByWhere(" 1=1 order by id asc", new Object[]{});
     }
 
-    public boolean updateStatus(String authorId, int status) {
+    public boolean updateStatus(long authorId, int status) {
         return domainDaoSupport.update("update author_ship set status=?, update_time=? where id=?; ",
                 new Object[]{status, System.currentTimeMillis(), authorId});
     }
@@ -81,7 +85,7 @@ public class AuthorShipDao {
         return domainDaoSupport.getByWhere(" email = ? limit 1;", new Object[]{email});
     }
 
-    public AuthorShip getAuthorByAuthorId(String authorId) {
+    public AuthorShip getAuthorByAuthorId(long authorId) {
         return domainDaoSupport.getByWhere(" author_id = ? limit 1;", new Object[]{authorId});
     }
 
@@ -89,36 +93,38 @@ public class AuthorShipDao {
      * 后台查询作者
      * @return
      */
-//    public AuthorQueryRespDTO getAuthorListByPage(AuthorQueryForm form){
-//        AuthorQueryRespDTO<AuthorShip> pageWrapper = new AuthorQueryRespDTO<>();
-//        pageWrapper.setPage(form.getPage());
-//        pageWrapper.setPageSize(form.getPageSize());
-//
-//        StringBuilder sql = new StringBuilder();
-//        List<Object> values = new ArrayList<>();
-//        if (form.getAuthorId() != null && form.getAuthorId() > 0){
-//            sql.append("id=?");
-//            values.add(form.getAuthorId());
-//        }else{
-//            sql.append("id>?");
-//            values.add(0);
-//        }
-//        if (StringUtils.isNotBlank(form.getAuthorName())) {
-//            sql.append(" and name like ? ");
-//            values.add("%" + form.getAuthorName() + "%");
-//        }
-//        if (form.getStatus() != null && form.getStatus() > -1) {
-//            sql.append(" and status = ? ");
-//            values.add(form.getStatus());
-//        }
-//        int total=domainDaoSupport.getCountByWhere(sql.toString(),values.toArray());
-//        pageWrapper.setTotalCount(total);
-//        if(total>0){
-//            sql.append(" order by id desc ");
-//            List<AuthorShip> authorShipList =
-//                    domainDaoSupport.getListByWhere(sql.toString(),form.getPageSize(),(form.getPage() - 1) * form.getPageSize(),  values.toArray());
-//            pageWrapper.setList(authorShipList);
-//        }
-//        return pageWrapper;
-//    }
+    public AuthorQueryRespDTO getAuthorListByPage(AuthorQueryForm form){
+        AuthorQueryRespDTO<AuthorShip> pageWrapper = new AuthorQueryRespDTO<>();
+        pageWrapper.setPage(form.getPage());
+        pageWrapper.setPageSize(form.getPageSize());
+
+        StringBuilder sql = new StringBuilder();
+        List<Object> values = new ArrayList<>();
+        if (form.getAuthorId() != null && form.getAuthorId() > 0){
+            sql.append("author_id=?");
+            values.add(form.getAuthorId());
+        }
+        else{
+            sql.append("author_id>?");
+            values.add(0);
+        }
+        if (StringUtils.isNotBlank(form.getAuthorName())) {
+            sql.append(" and author_name like ? ");
+            values.add("%" + form.getAuthorName() + "%");
+        }
+        if (form.getStatus() != null && form.getStatus() > -1) {
+            sql.append(" and status = ? ");
+            values.add(form.getStatus());
+        }
+        int total=domainDaoSupport.getCountByWhere(sql.toString(),values.toArray());
+        pageWrapper.setTotalCount(total);
+        if(total>0){
+            sql.append(" order by id desc ");
+            List<AuthorShip> authorShipList =
+                    domainDaoSupport.getListByWhere(sql.toString(),form.getPageSize(),(form.getPage() - 1) * form.getPageSize(),  values.toArray());
+            pageWrapper.setList(authorShipList);
+        }
+        return pageWrapper;
+    }
+
 }

@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 @ApiModel
 public class AuthorQueryForm {
     @ApiModelProperty("作者id")
-    private String authorId;
+    private Long authorId;
 
     @ApiModelProperty("作者名称")
     private String authorName;

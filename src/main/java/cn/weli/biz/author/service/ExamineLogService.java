@@ -26,7 +26,7 @@ public class ExamineLogService {
     /**
      * 作者申请
      */
-    public void updateApply(String authorId){
+    public void updateApply(long authorId){
         AuthorShip authorShip = authorShipService.getByAuthorId(authorId);
         if (authorShip == null) {
             throw new BusinessException("用户不存在，申请失败");
@@ -55,7 +55,7 @@ public class ExamineLogService {
      * @param authorId
      * @return
      */
-    private ExamineLog getByAuthorId(String authorId) {
+    private ExamineLog getByAuthorId(long authorId) {
         return examineLogDao.getByAuthorId(authorId);
     }
 

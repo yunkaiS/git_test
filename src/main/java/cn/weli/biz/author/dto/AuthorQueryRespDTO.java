@@ -26,13 +26,4 @@ public class AuthorQueryRespDTO<T> {
 
     @ApiModelProperty("list结果集")
     private List<T> list;
-
-    @ApiModelProperty("商家总数")
-    private int totalMerchant;
-
-    @ApiModelProperty("合同书籍数")
-    private int contractBookNum;
-
-    @ApiModelProperty("实际书籍数")
-    private int realBookNum;
 }
