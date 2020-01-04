@@ -1,4 +1,4 @@
-package cn.weli.biz.author.dto;
+package cn.weli.production.author.dto;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;

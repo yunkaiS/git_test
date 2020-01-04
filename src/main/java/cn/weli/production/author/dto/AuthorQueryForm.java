@@ -1,4 +1,4 @@
-package cn.weli.biz.author.dto;
+package cn.weli.production.author.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
@@ -16,12 +16,12 @@ import javax.validation.constraints.NotNull;
 @ApiModel
 public class AuthorQueryForm {
     @ApiModelProperty("作者id")
-    private Long authorId;
+    private Long id;
 
     @ApiModelProperty("作者名称")
-    private String authorName;
+    private String nickName;
 
-    @ApiModelProperty("账号状态 0下架 1上架")
+    @ApiModelProperty("账号状态 0:待审核 1:正常 2:锁定 3:审核拒绝")
     private Integer status;
 
     @ApiModelProperty("页次 从1开始")

@@ -1,15 +1,11 @@
-package cn.weli.biz.author.dto;
+package cn.weli.production.author.dto;
 
-import cn.weli.util.ValidationUtils;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotBlank;
-
-import javax.validation.constraints.Pattern;
 
 @Data
 @ApiModel
